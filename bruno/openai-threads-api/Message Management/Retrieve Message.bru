@@ -1,0 +1,67 @@
+meta {
+  name: Retrieve Message
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/threads/:thread_id/messages/:message_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  thread_id: 123
+  message_id: 123
+}
+
+example {
+  name: Example message object
+  
+  request: {
+    url: {{baseUrl}}/threads/:thread_id/messages/:message_id
+    method: GET
+    mode: none
+    params:path: {
+      thread_id: 123
+      message_id: 123
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "msg_abc123",
+          "object": "thread.message",
+          "created_at": 1699017614,
+          "thread_id": "thread_abc123",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": {
+                "value": "How does AI work? Explain it in simple terms.",
+                "annotations": []
+              }
+            }
+          ],
+          "file_ids": [],
+          "assistant_id": null,
+          "run_id": null,
+          "metadata": {}
+        }
+      '''
+    }
+  }
+}

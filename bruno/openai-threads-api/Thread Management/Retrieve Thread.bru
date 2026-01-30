@@ -1,0 +1,51 @@
+meta {
+  name: Retrieve Thread
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/threads/:thread_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  thread_id: 123
+}
+
+example {
+  name: Example thread object
+  
+  request: {
+    url: {{baseUrl}}/threads/:thread_id
+    method: GET
+    mode: none
+    params:path: {
+      thread_id: 123
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "thread_abc123",
+          "object": "thread",
+          "created_at": 1699012949,
+          "metadata": {}
+        }
+      '''
+    }
+  }
+}

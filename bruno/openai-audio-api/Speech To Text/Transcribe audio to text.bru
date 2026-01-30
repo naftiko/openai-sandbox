@@ -1,0 +1,58 @@
+meta {
+  name: Transcribe audio to text
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/audio/transcriptions
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  file: 
+  model: 
+  language: 
+  prompt: 
+  response_format: 
+  temperature: 
+}
+
+example {
+  name: Example transcription response (Example transcription request)
+  
+  request: {
+    url: {{baseUrl}}/audio/transcriptions
+    method: POST
+    mode: multipartForm
+    body:multipart-form: {
+      file: 
+      model: 
+      language: 
+      prompt: 
+      response_format: 
+      temperature: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "text": "Imagine the wildest idea that you've ever had, and you're curious about how it might scale to something that's a 100, a 1,000 times bigger. This is a place where you can get to do that."
+        }
+      '''
+    }
+  }
+}

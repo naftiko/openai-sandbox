@@ -1,0 +1,57 @@
+meta {
+  name: Generate speech from text
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/audio/speech
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "model": "",
+    "input": "",
+    "voice": "",
+    "response_format": "",
+    "speed": 0
+  }
+}
+
+example {
+  name: 200 Response (Example speech generation request)
+  description: The generated audio file content
+  
+  request: {
+    url: {{baseUrl}}/audio/speech
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "model": "tts-1",
+        "input": "The quick brown fox jumped over the lazy dog.",
+        "voice": "alloy"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/octet-stream
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

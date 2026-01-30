@@ -1,0 +1,76 @@
+meta {
+  name: Create embeddings
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/embeddings
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "input": "",
+    "model": "",
+    "encoding_format": "",
+    "dimensions": 0,
+    "user": ""
+  }
+}
+
+example {
+  name: Example embedding response (Example embedding request)
+  
+  request: {
+    url: {{baseUrl}}/embeddings
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "input": "The food was delicious and the waiter...",
+        "model": "text-embedding-ada-002",
+        "encoding_format": "float"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "object": "list",
+          "data": [
+            {
+              "object": "embedding",
+              "embedding": [
+                0.0023064255,
+                -0.009327292,
+                0.015797347,
+                -0.007598236,
+                -0.0028842222
+              ],
+              "index": 0
+            }
+          ],
+          "model": "text-embedding-ada-002",
+          "usage": {
+            "prompt_tokens": 8,
+            "total_tokens": 8
+          }
+        }
+      '''
+    }
+  }
+}

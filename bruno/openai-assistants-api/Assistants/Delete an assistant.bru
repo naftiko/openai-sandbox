@@ -1,0 +1,50 @@
+meta {
+  name: Delete an assistant
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/assistants/:assistant_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  assistant_id: 123
+}
+
+example {
+  name: Example delete assistant response
+  
+  request: {
+    url: {{baseUrl}}/assistants/:assistant_id
+    method: DELETE
+    mode: none
+    params:path: {
+      assistant_id: 123
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "asst_abc123",
+          "object": "assistant.deleted",
+          "deleted": true
+        }
+      '''
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "openai-completions-api",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

@@ -1,0 +1,53 @@
+meta {
+  name: Retrieve an assistant file
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/assistants/:assistant_id/files/:file_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  assistant_id: 123
+  file_id: 123
+}
+
+example {
+  name: Example assistant file object
+  
+  request: {
+    url: {{baseUrl}}/assistants/:assistant_id/files/:file_id
+    method: GET
+    mode: none
+    params:path: {
+      assistant_id: 123
+      file_id: 123
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "file-abc123",
+          "object": "assistant.file",
+          "created_at": 1699055364,
+          "assistant_id": "asst_abc123"
+        }
+      '''
+    }
+  }
+}

@@ -1,0 +1,61 @@
+meta {
+  name: List Available Models
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/models
+  body: none
+  auth: inherit
+}
+
+example {
+  name: Example list models response
+  
+  request: {
+    url: {{baseUrl}}/models
+    method: GET
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "object": "list",
+          "data": [
+            {
+              "id": "gpt-4",
+              "object": "model",
+              "created": 1686935002,
+              "owned_by": "openai"
+            },
+            {
+              "id": "gpt-3.5-turbo",
+              "object": "model",
+              "created": 1686935002,
+              "owned_by": "openai"
+            },
+            {
+              "id": "dall-e-3",
+              "object": "model",
+              "created": 1686935002,
+              "owned_by": "openai"
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

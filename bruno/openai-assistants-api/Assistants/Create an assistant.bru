@@ -1,0 +1,78 @@
+meta {
+  name: Create an assistant
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/assistants
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "model": "",
+    "name": "",
+    "description": "",
+    "instructions": "",
+    "tools": [],
+    "file_ids": [],
+    "metadata": {}
+  }
+}
+
+example {
+  name: Example assistant object (Example create assistant request)
+  
+  request: {
+    url: {{baseUrl}}/assistants
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "model": "gpt-4",
+        "name": "Math Tutor",
+        "instructions": "You are a personal math tutor. When asked a question, write and run Python code to answer the question.",
+        "tools": [
+          {
+            "type": "code_interpreter"
+          }
+        ]
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "asst_abc123",
+          "object": "assistant",
+          "created_at": 1698984975,
+          "name": "Math Tutor",
+          "description": null,
+          "model": "gpt-4",
+          "instructions": "You are a personal math tutor. When asked a question, write and run Python code to answer the question.",
+          "tools": [
+            {
+              "type": "code_interpreter"
+            }
+          ],
+          "file_ids": [],
+          "metadata": {}
+        }
+      '''
+    }
+  }
+}

@@ -1,0 +1,56 @@
+meta {
+  name: Translate audio to English text
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/audio/translations
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  file: 
+  model: 
+  prompt: 
+  response_format: 
+  temperature: 
+}
+
+example {
+  name: Example translation response (Example translation request)
+  
+  request: {
+    url: {{baseUrl}}/audio/translations
+    method: POST
+    mode: multipartForm
+    body:multipart-form: {
+      file: 
+      model: 
+      prompt: 
+      response_format: 
+      temperature: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "text": "Hello, my name is Wolfgang and I come from Germany. Where are you heading today?"
+        }
+      '''
+    }
+  }
+}

@@ -1,0 +1,52 @@
+meta {
+  name: Delete an assistant file
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{baseUrl}}/assistants/:assistant_id/files/:file_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  assistant_id: 123
+  file_id: 123
+}
+
+example {
+  name: Example delete assistant file response
+  
+  request: {
+    url: {{baseUrl}}/assistants/:assistant_id/files/:file_id
+    method: DELETE
+    mode: none
+    params:path: {
+      assistant_id: 123
+      file_id: 123
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "file-abc123",
+          "object": "assistant.file.deleted",
+          "deleted": true
+        }
+      '''
+    }
+  }
+}

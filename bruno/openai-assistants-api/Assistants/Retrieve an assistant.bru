@@ -1,0 +1,61 @@
+meta {
+  name: Retrieve an assistant
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/assistants/:assistant_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  assistant_id: 123
+}
+
+example {
+  name: Example assistant object
+  
+  request: {
+    url: {{baseUrl}}/assistants/:assistant_id
+    method: GET
+    mode: none
+    params:path: {
+      assistant_id: 123
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "asst_abc123",
+          "object": "assistant",
+          "created_at": 1698984975,
+          "name": "Math Tutor",
+          "description": null,
+          "model": "gpt-4",
+          "instructions": "You are a personal math tutor. When asked a question, write and run Python code to answer the question.",
+          "tools": [
+            {
+              "type": "code_interpreter"
+            }
+          ],
+          "file_ids": [],
+          "metadata": {}
+        }
+      '''
+    }
+  }
+}

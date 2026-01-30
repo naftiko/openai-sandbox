@@ -1,0 +1,63 @@
+meta {
+  name: Create Image Variation
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/images/variations
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  image: 
+  model: 
+  n: 
+  response_format: 
+  size: 
+  user: 
+}
+
+example {
+  name: Example images response
+  
+  request: {
+    url: {{baseUrl}}/images/variations
+    method: POST
+    mode: multipartForm
+    body:multipart-form: {
+      image: 
+      model: 
+      n: 
+      response_format: 
+      size: 
+      user: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "created": 1589478378,
+          "data": [
+            {
+              "url": "https://oaidalleapiprodscus.blob.core.windows.net/private/generated-image.png"
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

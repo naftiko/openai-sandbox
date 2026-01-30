@@ -1,0 +1,69 @@
+meta {
+  name: Modify Thread
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/threads/:thread_id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  thread_id: 123
+}
+
+body:json {
+  {
+    "metadata": {}
+  }
+}
+
+example {
+  name: Example modified thread object
+  
+  request: {
+    url: {{baseUrl}}/threads/:thread_id
+    method: POST
+    mode: json
+    params:path: {
+      thread_id: 123
+    }
+  
+    body:json: {
+      {
+        "metadata": {
+          "modified": "true",
+          "user": "abc123"
+        }
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "thread_abc123",
+          "object": "thread",
+          "created_at": 1699014083,
+          "metadata": {
+            "modified": "true",
+            "user": "abc123"
+          }
+        }
+      '''
+    }
+  }
+}

@@ -1,0 +1,88 @@
+meta {
+  name: Create a text completion
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/completions
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "model": "",
+    "prompt": "",
+    "best_of": 0,
+    "echo": false,
+    "frequency_penalty": 0,
+    "logit_bias": {},
+    "logprobs": 0,
+    "max_tokens": 0,
+    "n": 0,
+    "presence_penalty": 0,
+    "seed": 0,
+    "stop": "",
+    "stream": false,
+    "suffix": "",
+    "temperature": 0,
+    "top_p": 0,
+    "user": ""
+  }
+}
+
+example {
+  name: Basic text completion response (Basic text completion request)
+  
+  request: {
+    url: {{baseUrl}}/completions
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "model": "gpt-3.5-turbo-instruct",
+        "prompt": "Say this is a test",
+        "max_tokens": 7,
+        "temperature": 0
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "cmpl-uqkvlQyYK7bGYrRHQ0eXlWi7",
+          "object": "text_completion",
+          "created": 1589478378,
+          "model": "gpt-3.5-turbo-instruct",
+          "system_fingerprint": "fp_44709d6fcb",
+          "choices": [
+            {
+              "text": "\n\nThis is indeed a test",
+              "index": 0,
+              "logprobs": null,
+              "finish_reason": "length"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 5,
+            "completion_tokens": 7,
+            "total_tokens": 12
+          }
+        }
+      '''
+    }
+  }
+}

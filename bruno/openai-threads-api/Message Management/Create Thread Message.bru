@@ -1,0 +1,81 @@
+meta {
+  name: Create Thread Message
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/threads/:thread_id/messages
+  body: json
+  auth: inherit
+}
+
+params:path {
+  thread_id: 123
+}
+
+body:json {
+  {
+    "role": "",
+    "content": "",
+    "file_ids": [],
+    "metadata": {}
+  }
+}
+
+example {
+  name: Example message object
+  
+  request: {
+    url: {{baseUrl}}/threads/:thread_id/messages
+    method: POST
+    mode: json
+    params:path: {
+      thread_id: 123
+    }
+  
+    body:json: {
+      {
+        "role": "user",
+        "content": "How does AI work? Explain it in simple terms."
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "msg_abc123",
+          "object": "thread.message",
+          "created_at": 1699017614,
+          "thread_id": "thread_abc123",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": {
+                "value": "How does AI work? Explain it in simple terms.",
+                "annotations": []
+              }
+            }
+          ],
+          "file_ids": [],
+          "assistant_id": null,
+          "run_id": null,
+          "metadata": {}
+        }
+      '''
+    }
+  }
+}

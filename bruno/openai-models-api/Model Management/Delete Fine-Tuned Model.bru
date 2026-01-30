@@ -1,0 +1,50 @@
+meta {
+  name: Delete Fine-Tuned Model
+  type: http
+  seq: 1
+}
+
+delete {
+  url: {{baseUrl}}/models/:model
+  body: none
+  auth: inherit
+}
+
+params:path {
+  model: 
+}
+
+example {
+  name: Example delete model response
+  
+  request: {
+    url: {{baseUrl}}/models/:model
+    method: DELETE
+    mode: none
+    params:path: {
+      model: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "ft:gpt-3.5-turbo:acemeco:suffix:abc123",
+          "object": "model",
+          "deleted": true
+        }
+      '''
+    }
+  }
+}

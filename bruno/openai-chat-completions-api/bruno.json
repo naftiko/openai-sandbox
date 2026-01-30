@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "openai-chat-completions-api",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

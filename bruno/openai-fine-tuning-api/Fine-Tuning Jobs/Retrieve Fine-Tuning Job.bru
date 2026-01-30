@@ -1,0 +1,64 @@
+meta {
+  name: Retrieve Fine-Tuning Job
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/fine_tuning/jobs/:fine_tuning_job_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  fine_tuning_job_id: 123
+}
+
+example {
+  name: Example succeeded fine-tuning job
+  
+  request: {
+    url: {{baseUrl}}/fine_tuning/jobs/:fine_tuning_job_id
+    method: GET
+    mode: none
+    params:path: {
+      fine_tuning_job_id: 123
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "object": "fine_tuning.job",
+          "id": "ftjob-abc123",
+          "model": "davinci-002",
+          "created_at": 1692661014,
+          "finished_at": 1692661190,
+          "fine_tuned_model": "ft:davinci-002:my-org:custom_suffix:7q8mpxmy",
+          "organization_id": "org-123",
+          "result_files": [
+            "file-abc123"
+          ],
+          "status": "succeeded",
+          "validation_file": null,
+          "training_file": "file-abc123",
+          "hyperparameters": {
+            "n_epochs": 4
+          },
+          "trained_tokens": 5768
+        }
+      '''
+    }
+  }
+}

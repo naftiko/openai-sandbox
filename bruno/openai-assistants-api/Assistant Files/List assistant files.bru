@@ -1,0 +1,79 @@
+meta {
+  name: List assistant files
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/assistants/:assistant_id/files
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~limit: 
+  ~order: 
+  ~after: 
+  ~before: 
+}
+
+params:path {
+  assistant_id: 123
+}
+
+example {
+  name: Example list of assistant files
+  
+  request: {
+    url: {{baseUrl}}/assistants/:assistant_id/files
+    method: GET
+    mode: none
+    params:query: {
+      ~limit: 
+      ~order: 
+      ~after: 
+      ~before: 
+    }
+  
+    params:path: {
+      assistant_id: 123
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "object": "list",
+          "data": [
+            {
+              "id": "file-abc123",
+              "object": "assistant.file",
+              "created_at": 1699060412,
+              "assistant_id": "asst_abc123"
+            },
+            {
+              "id": "file-abc456",
+              "object": "assistant.file",
+              "created_at": 1699060412,
+              "assistant_id": "asst_abc123"
+            }
+          ],
+          "first_id": "file-abc123",
+          "last_id": "file-abc456",
+          "has_more": false
+        }
+      '''
+    }
+  }
+}

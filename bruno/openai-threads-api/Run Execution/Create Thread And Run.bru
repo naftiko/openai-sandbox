@@ -1,0 +1,106 @@
+meta {
+  name: Create Thread And Run
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/threads/runs
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "assistant_id": "",
+    "thread": {
+      "messages": [
+        {
+          "role": "",
+          "content": "",
+          "file_ids": [],
+          "metadata": {}
+        }
+      ],
+      "metadata": {}
+    },
+    "model": "",
+    "instructions": "",
+    "tools": [
+      {
+        "type": "",
+        "function": {
+          "name": "",
+          "description": "",
+          "parameters": {}
+        }
+      }
+    ],
+    "metadata": {}
+  }
+}
+
+example {
+  name: Example run object
+  
+  request: {
+    url: {{baseUrl}}/threads/runs
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "assistant_id": "asst_abc123",
+        "thread": {
+          "messages": [
+            {
+              "role": "user",
+              "content": "Hello, what is AI?"
+            }
+          ]
+        }
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "run_abc123",
+          "object": "thread.run",
+          "created_at": 1699063290,
+          "thread_id": "thread_abc123",
+          "assistant_id": "asst_abc123",
+          "status": "queued",
+          "required_action": null,
+          "last_error": null,
+          "expires_at": 1699063890,
+          "started_at": null,
+          "cancelled_at": null,
+          "failed_at": null,
+          "completed_at": null,
+          "model": "gpt-4",
+          "instructions": "You are a helpful assistant.",
+          "tools": [
+            {
+              "type": "code_interpreter"
+            }
+          ],
+          "file_ids": [],
+          "metadata": {},
+          "usage": null
+        }
+      '''
+    }
+  }
+}

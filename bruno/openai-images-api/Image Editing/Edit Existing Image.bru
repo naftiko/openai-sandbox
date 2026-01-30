@@ -1,0 +1,67 @@
+meta {
+  name: Edit Existing Image
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/images/edits
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  image: 
+  prompt: 
+  mask: 
+  model: 
+  n: 
+  size: 
+  response_format: 
+  user: 
+}
+
+example {
+  name: Example images response
+  
+  request: {
+    url: {{baseUrl}}/images/edits
+    method: POST
+    mode: multipartForm
+    body:multipart-form: {
+      image: 
+      prompt: 
+      mask: 
+      model: 
+      n: 
+      size: 
+      response_format: 
+      user: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "created": 1589478378,
+          "data": [
+            {
+              "url": "https://oaidalleapiprodscus.blob.core.windows.net/private/generated-image.png"
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

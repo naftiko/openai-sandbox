@@ -1,0 +1,87 @@
+meta {
+  name: List Thread Messages
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/threads/:thread_id/messages
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~limit: 
+  ~order: 
+  ~after: 
+  ~before: 
+}
+
+params:path {
+  thread_id: 123
+}
+
+example {
+  name: Example list messages response
+  
+  request: {
+    url: {{baseUrl}}/threads/:thread_id/messages
+    method: GET
+    mode: none
+    params:query: {
+      ~limit: 
+      ~order: 
+      ~after: 
+      ~before: 
+    }
+  
+    params:path: {
+      thread_id: 123
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "object": "list",
+          "data": [
+            {
+              "id": "msg_abc123",
+              "object": "thread.message",
+              "created_at": 1699016383,
+              "thread_id": "thread_abc123",
+              "role": "user",
+              "content": [
+                {
+                  "type": "text",
+                  "text": {
+                    "value": "How does AI work? Explain it in simple terms.",
+                    "annotations": []
+                  }
+                }
+              ],
+              "file_ids": [],
+              "assistant_id": null,
+              "run_id": null,
+              "metadata": {}
+            }
+          ],
+          "first_id": "msg_abc123",
+          "last_id": "msg_abc123",
+          "has_more": false
+        }
+      '''
+    }
+  }
+}

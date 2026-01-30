@@ -1,0 +1,66 @@
+meta {
+  name: List All Files
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/files
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~purpose: 
+}
+
+example {
+  name: Example list files response
+  
+  request: {
+    url: {{baseUrl}}/files
+    method: GET
+    mode: none
+    params:query: {
+      ~purpose: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "object": "list",
+          "data": [
+            {
+              "id": "file-abc123",
+              "object": "file",
+              "bytes": 175,
+              "created_at": 1613677385,
+              "filename": "salesOverview.pdf",
+              "purpose": "assistants"
+            },
+            {
+              "id": "file-def456",
+              "object": "file",
+              "bytes": 140,
+              "created_at": 1613779121,
+              "filename": "puppy.jsonl",
+              "purpose": "fine-tune"
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

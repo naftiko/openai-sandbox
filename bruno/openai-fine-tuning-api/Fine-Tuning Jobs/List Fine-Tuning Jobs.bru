@@ -1,0 +1,71 @@
+meta {
+  name: List Fine-Tuning Jobs
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/fine_tuning/jobs
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~after: 
+  ~limit: 
+}
+
+example {
+  name: Example list fine-tuning jobs response
+  
+  request: {
+    url: {{baseUrl}}/fine_tuning/jobs
+    method: GET
+    mode: none
+    params:query: {
+      ~after: 
+      ~limit: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "object": "list",
+          "data": [
+            {
+              "object": "fine_tuning.job",
+              "id": "ftjob-abc123",
+              "model": "gpt-3.5-turbo-0613",
+              "created_at": 1614807352,
+              "fine_tuned_model": "ft:gpt-3.5-turbo:my-org::abc123",
+              "organization_id": "org-123",
+              "result_files": [
+                "file-result123"
+              ],
+              "status": "succeeded",
+              "validation_file": null,
+              "training_file": "file-abc123",
+              "hyperparameters": {
+                "n_epochs": 4
+              },
+              "trained_tokens": 12000
+            }
+          ],
+          "has_more": false
+        }
+      '''
+    }
+  }
+}

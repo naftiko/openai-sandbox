@@ -1,0 +1,63 @@
+meta {
+  name: Attach a file to an assistant
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/assistants/:assistant_id/files
+  body: json
+  auth: inherit
+}
+
+params:path {
+  assistant_id: 123
+}
+
+body:json {
+  {
+    "file_id": ""
+  }
+}
+
+example {
+  name: Example assistant file object (Example create assistant file request)
+  
+  request: {
+    url: {{baseUrl}}/assistants/:assistant_id/files
+    method: POST
+    mode: json
+    params:path: {
+      assistant_id: 123
+    }
+  
+    body:json: {
+      {
+        "file_id": "file-abc123"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "file-abc123",
+          "object": "assistant.file",
+          "created_at": 1699055364,
+          "assistant_id": "asst_abc123"
+        }
+      '''
+    }
+  }
+}

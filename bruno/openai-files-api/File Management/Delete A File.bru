@@ -1,0 +1,50 @@
+meta {
+  name: Delete A File
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{baseUrl}}/files/:file_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  file_id: 123
+}
+
+example {
+  name: Example delete file response
+  
+  request: {
+    url: {{baseUrl}}/files/:file_id
+    method: DELETE
+    mode: none
+    params:path: {
+      file_id: 123
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "file-abc123",
+          "object": "file",
+          "deleted": true
+        }
+      '''
+    }
+  }
+}

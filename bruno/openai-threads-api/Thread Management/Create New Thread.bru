@@ -1,0 +1,61 @@
+meta {
+  name: Create New Thread
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/threads
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "messages": [
+      {
+        "role": "",
+        "content": "",
+        "file_ids": [],
+        "metadata": {}
+      }
+    ],
+    "metadata": {}
+  }
+}
+
+example {
+  name: Example thread object
+  
+  request: {
+    url: {{baseUrl}}/threads
+    method: POST
+    mode: json
+    body:json: {
+      {}
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "thread_abc123",
+          "object": "thread",
+          "created_at": 1699012949,
+          "metadata": {}
+        }
+      '''
+    }
+  }
+}

@@ -1,0 +1,75 @@
+meta {
+  name: Retrieve Run Step
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/threads/:thread_id/runs/:run_id/steps/:step_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  thread_id: 123
+  run_id: 123
+  step_id: 123
+}
+
+example {
+  name: Example run step object
+  
+  request: {
+    url: {{baseUrl}}/threads/:thread_id/runs/:run_id/steps/:step_id
+    method: GET
+    mode: none
+    params:path: {
+      thread_id: 123
+      run_id: 123
+      step_id: 123
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "step_abc123",
+          "object": "thread.run.step",
+          "created_at": 1699063291,
+          "run_id": "run_abc123",
+          "assistant_id": "asst_abc123",
+          "thread_id": "thread_abc123",
+          "type": "message_creation",
+          "status": "completed",
+          "step_details": {
+            "type": "message_creation",
+            "message_creation": {
+              "message_id": "msg_abc123"
+            }
+          },
+          "last_error": null,
+          "cancelled_at": null,
+          "failed_at": null,
+          "completed_at": 1699063291,
+          "expired_at": null,
+          "usage": {
+            "prompt_tokens": 123,
+            "completion_tokens": 456,
+            "total_tokens": 579
+          }
+        }
+      '''
+    }
+  }
+}

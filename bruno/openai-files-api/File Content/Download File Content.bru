@@ -1,0 +1,46 @@
+meta {
+  name: Download File Content
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/files/:file_id/content
+  body: none
+  auth: inherit
+}
+
+params:path {
+  file_id: 123
+}
+
+example {
+  name: Example file content
+  
+  request: {
+    url: {{baseUrl}}/files/:file_id/content
+    method: GET
+    mode: none
+    params:path: {
+      file_id: 123
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/octet-stream
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        {"prompt": "Example prompt", "completion": "Example completion"}
+      '''
+    }
+  }
+}

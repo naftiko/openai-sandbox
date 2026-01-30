@@ -1,0 +1,92 @@
+meta {
+  name: List Thread Runs
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/threads/:thread_id/runs
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~limit: 
+  ~order: 
+  ~after: 
+  ~before: 
+}
+
+params:path {
+  thread_id: 123
+}
+
+example {
+  name: Example list runs response
+  
+  request: {
+    url: {{baseUrl}}/threads/:thread_id/runs
+    method: GET
+    mode: none
+    params:query: {
+      ~limit: 
+      ~order: 
+      ~after: 
+      ~before: 
+    }
+  
+    params:path: {
+      thread_id: 123
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "object": "list",
+          "data": [
+            {
+              "id": "run_abc123",
+              "object": "thread.run",
+              "created_at": 1699063290,
+              "thread_id": "thread_abc123",
+              "assistant_id": "asst_abc123",
+              "status": "completed",
+              "required_action": null,
+              "last_error": null,
+              "expires_at": 1699063890,
+              "started_at": 1699063291,
+              "cancelled_at": null,
+              "failed_at": null,
+              "completed_at": 1699063295,
+              "model": "gpt-4",
+              "instructions": "You are a helpful assistant.",
+              "tools": [],
+              "file_ids": [],
+              "metadata": {},
+              "usage": {
+                "prompt_tokens": 123,
+                "completion_tokens": 456,
+                "total_tokens": 579
+              }
+            }
+          ],
+          "first_id": "run_abc123",
+          "last_id": "run_abc123",
+          "has_more": false
+        }
+      '''
+    }
+  }
+}

@@ -1,0 +1,92 @@
+meta {
+  name: Modify an assistant
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/assistants/:assistant_id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  assistant_id: 123
+}
+
+body:json {
+  {
+    "model": "",
+    "name": "",
+    "description": "",
+    "instructions": "",
+    "tools": [],
+    "file_ids": [],
+    "metadata": {}
+  }
+}
+
+example {
+  name: Example modified assistant object (Example modify assistant request)
+  
+  request: {
+    url: {{baseUrl}}/assistants/:assistant_id
+    method: POST
+    mode: json
+    params:path: {
+      assistant_id: 123
+    }
+  
+    body:json: {
+      {
+        "instructions": "You are an HR bot, and you have access to files to answer employee questions about company policies. Always response with info from either of the files.",
+        "tools": [
+          {
+            "type": "retrieval"
+          }
+        ],
+        "model": "gpt-4",
+        "file_ids": [
+          "file-abc123",
+          "file-abc456"
+        ]
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "asst_abc123",
+          "object": "assistant",
+          "created_at": 1699009709,
+          "name": "HR Helper",
+          "description": null,
+          "model": "gpt-4",
+          "instructions": "You are an HR bot, and you have access to files to answer employee questions about company policies. Always response with info from either of the files.",
+          "tools": [
+            {
+              "type": "retrieval"
+            }
+          ],
+          "file_ids": [
+            "file-abc123",
+            "file-abc456"
+          ],
+          "metadata": {}
+        }
+      '''
+    }
+  }
+}

@@ -1,0 +1,67 @@
+meta {
+  name: Generate Image From Prompt
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/images/generations
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "prompt": "",
+    "model": "",
+    "n": 0,
+    "quality": "",
+    "response_format": "",
+    "size": "",
+    "style": "",
+    "user": ""
+  }
+}
+
+example {
+  name: Example images response
+  
+  request: {
+    url: {{baseUrl}}/images/generations
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "model": "dall-e-3",
+        "prompt": "A cute baby sea otter",
+        "n": 1,
+        "size": "1024x1024"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "created": 1589478378,
+          "data": [
+            {
+              "url": "https://oaidalleapiprodscus.blob.core.windows.net/private/generated-image.png"
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

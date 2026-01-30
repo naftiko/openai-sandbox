@@ -1,0 +1,84 @@
+meta {
+  name: Modify Run
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/threads/:thread_id/runs/:run_id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  thread_id: 123
+  run_id: 123
+}
+
+body:json {
+  {
+    "metadata": {}
+  }
+}
+
+example {
+  name: Example modified run object
+  
+  request: {
+    url: {{baseUrl}}/threads/:thread_id/runs/:run_id
+    method: POST
+    mode: json
+    params:path: {
+      thread_id: 123
+      run_id: 123
+    }
+  
+    body:json: {
+      {
+        "metadata": {
+          "modified": "true"
+        }
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "run_abc123",
+          "object": "thread.run",
+          "created_at": 1699063290,
+          "thread_id": "thread_abc123",
+          "assistant_id": "asst_abc123",
+          "status": "queued",
+          "required_action": null,
+          "last_error": null,
+          "expires_at": 1699063890,
+          "started_at": null,
+          "cancelled_at": null,
+          "failed_at": null,
+          "completed_at": null,
+          "model": "gpt-4",
+          "instructions": "You are a helpful assistant.",
+          "tools": [],
+          "file_ids": [],
+          "metadata": {
+            "modified": "true"
+          },
+          "usage": null
+        }
+      '''
+    }
+  }
+}

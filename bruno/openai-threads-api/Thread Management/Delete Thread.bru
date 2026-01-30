@@ -1,0 +1,50 @@
+meta {
+  name: Delete Thread
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{baseUrl}}/threads/:thread_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  thread_id: 123
+}
+
+example {
+  name: Example delete thread response
+  
+  request: {
+    url: {{baseUrl}}/threads/:thread_id
+    method: DELETE
+    mode: none
+    params:path: {
+      thread_id: 123
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "thread_abc123",
+          "object": "thread.deleted",
+          "deleted": true
+        }
+      '''
+    }
+  }
+}

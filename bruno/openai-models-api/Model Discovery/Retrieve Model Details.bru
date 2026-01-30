@@ -1,0 +1,51 @@
+meta {
+  name: Retrieve Model Details
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/models/:model
+  body: none
+  auth: inherit
+}
+
+params:path {
+  model: 
+}
+
+example {
+  name: Example model object
+  
+  request: {
+    url: {{baseUrl}}/models/:model
+    method: GET
+    mode: none
+    params:path: {
+      model: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "gpt-3.5-turbo",
+          "object": "model",
+          "created": 1686935002,
+          "owned_by": "openai"
+        }
+      '''
+    }
+  }
+}
