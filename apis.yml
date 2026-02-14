@@ -1,0 +1,409 @@
+specificationVersion: '0.19'
+
+aid: openai-sandbox
+type: Sandbox
+visibility: Public
+
+name: Open AI API & MCP Sandbox
+description: >-
+  This is a Open AI sandbox that uses OpenAPI, Microcks, Bruno, and
+  Backstage to provide a 3rd-party REST API and MCP sandbox for Open AI.
+
+tags:
+  - Artificial Intelligence
+  - AI
+  - Models
+
+image: https://naftiko.s3.us-east-1.amazonaws.com/naftiko-logo-blue-icon.png
+
+created: '2026-01-29'
+modified: '2026-02-13'
+
+url: https://github.com/naftiko/openai-sandbox/blob/main/README.md
+
+apis:
+
+    - aid: openai:openai-assistants-api
+      name: Openai Assistants API
+      description: >-
+        The OpenAI Assistants API allows you to build AI assistants within your
+        own applications. An Assistant has instructions and can leverage models,
+        tools, and knowledge to respond to user queries. The Assistants API
+        currently supports three types of tools: Code Interpreter, Retrieval,
+        and Function calling.
+      tags:
+        - Assistants
+        - AI Assistants
+        - Code Interpreter
+        - Retrieval
+        - Function Calling
+      properties:
+
+        - type: OpenApi
+          url: openapi/assistants-openapi-original.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/openai-assistants-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/openai-assistants-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/assistants-backstage-original.yml
+
+    - aid: openai:openai-audio-api
+      name: Openai Audio API
+      description: >-
+        The OpenAI Audio API provides endpoints for converting audio to text
+        (transcription and translation) and text to audio (speech synthesis).
+        Use the Whisper model for transcription and translation, and the TTS
+        models for generating natural-sounding speech from text.
+      tags:
+        - Audio
+        - Speech To Text
+        - Text To Speech
+        - Transcription
+        - Translation
+      properties:
+
+        - type: OpenApi
+          url: openapi/audio-openapi-original.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/openai-audio-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/openai-audio-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/audio-backstage-original.yml
+
+    - aid: openai:openai-chat-completions-api
+      name: Openai Chat Completions API
+      description: >-
+        The OpenAI Chat Completions API enables conversational AI by processing
+        a list of messages comprising a conversation and returning a
+        model-generated response. Supports various features including streaming,
+        function calling, vision (image input), and JSON mode.
+      tags:
+        - Chat
+        - Completions
+        - Conversational AI
+        - Streaming
+        - Function Calling
+      properties:
+
+        - type: OpenApi
+          url: openapi/chat-openapi-original.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/openai-chat-completions-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/openai-chat-completions-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/chat-backstage-original.yml
+
+    - aid: openai:openai-completions-api
+      name: Openai Completions API
+      description: >-
+        The OpenAI Completions API provides legacy text completion capabilities.
+        Given a prompt, the model will return one or more predicted completions
+        along with the probabilities of alternative tokens at each position.
+        Note: Most developers should use the Chat Completions API for newer
+        models and better results.
+      tags:
+        - Completions
+        - Text Completions
+        - Legacy
+      properties:
+
+        - type: OpenApi
+          url: openapi/completions-openapi-original.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/openai-completions-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/openai-completions-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/completions-backstage-original.yml
+
+    - aid: openai:openai-embeddings-api
+      name: Openai Embeddings API
+      description: >-
+        The OpenAI Embeddings API provides vector representations of text inputs
+        that can be easily consumed by machine learning models and algorithms.
+        Embeddings are useful for semantic search, clustering, recommendations,
+        anomaly detection, and classification tasks.
+      tags:
+        - Embeddings
+        - Vectors
+        - Semantic Search
+        - Clustering
+      properties:
+
+        - type: OpenApi
+          url: openapi/embeddings-openapi-original.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/openai-embeddings-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/openai-embeddings-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/embeddings-backstage-original.yml
+
+    - aid: openai:openai-files-api
+      name: Openai Files API
+      description: >-
+        The Files API allows you to upload, list, retrieve, and delete files
+        that can be used with various OpenAI features such as Fine-tuning and
+        Assistants. Files are used to upload documents that can be processed by
+        OpenAI's models. The API supports various file formats and purposes
+        including training data for fine-tuning and documents for the Assistants
+        API.
+      tags:
+        - Files
+        - File Management
+        - Uploads
+      properties:
+
+        - type: OpenApi
+          url: openapi/files-openapi-original.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/openai-files-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/openai-files-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/files-backstage-original.yml
+
+    - aid: openai:openai-fine-tuning-api
+      name: Openai Fine Tuning API
+      description: >-
+        The Fine-Tuning API allows you to customize OpenAI models by training
+        them on your specific dataset. Fine-tuning lets you create specialized
+        models tailored to your use case by providing training examples. You can
+        create fine-tuning jobs, monitor their progress, list events, and manage
+        completed fine-tuned models.
+      tags:
+        - Fine-Tuning
+        - Training
+        - Custom Models
+      properties:
+
+        - type: OpenApi
+          url: openapi/fine-tuning-openapi-original.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/openai-fine-tuning-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/openai-fine-tuning-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/fine-tuning-backstage-original.yml
+
+    - aid: openai:openai-images-api
+      name: Openai Images API
+      description: >-
+        The Images API allows you to generate, edit, and create variations of
+        images using OpenAI's DALL-E models. With this API, you can create
+        original images from text descriptions (prompts), edit existing images
+        by providing a mask and instructions, or generate variations of existing
+        images.
+      tags:
+        - Images
+        - Image Generation
+        - DALL-E
+      properties:
+
+        - type: OpenApi
+          url: openapi/images-openapi-original.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/openai-images-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/openai-images-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/images-backstage-original.yml
+
+    - aid: openai:openai-models-api
+      name: Openai Models API
+      description: >-
+        The Models API allows you to list and describe the various AI models
+        available in the OpenAI API. You can retrieve information about specific
+        models, list all available models, and delete fine-tuned models that you
+        have created. Each model has different capabilities, performance
+        characteristics, and pricing.
+      tags:
+        - Models
+        - Model Discovery
+        - Model Management
+      properties:
+
+        - type: OpenApi
+          url: openapi/models-openapi-original.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/openai-models-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/openai-models-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/models-backstage-original.yml
+
+    - aid: openai:openai-threads-api
+      name: Openai Threads API
+      description: >-
+        The Threads API enables you to create and manage conversation threads
+        for the Assistants feature. Threads contain messages that can be
+        processed by assistants. You can create threads, add messages to them,
+        run assistants against them, and retrieve the results. This API is part
+        of the Assistants beta feature.
+      tags:
+        - Threads
+        - Thread Management
+        - Messages
+        - Assistants
+      properties:
+
+        - type: OpenApi
+          url: openapi/threads-openapi-original.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/openai-threads-api/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/rest/openai-threads-api/1.0.0/sse
+        - type: BackstageApi
+          url: backstage/threads-backstage-original.yml
+
+          
+common:
+
+  - type: Summary
+    data:
+      numberOfPaths: 33
+      numberOfOperations: 48
+      numberOfReadOperations: 19
+      numberOfWriteOperations: 29
+      numberOfSchemas: 77
+      numberOfResponses: 0
+      numberOfParameters: 0
+      numberOfExamples: 62
+      numberOfRequestBodies: 0
+      numberOfHeaders: 0
+      tags:
+        - Assistant Files
+        - Assistants
+        - Chat Completions
+        - Embeddings
+        - File Content
+        - File Management
+        - Fine-tuning Events
+        - Fine-tuning Jobs
+        - Image Editing
+        - Image Generation
+        - Image Variations
+        - Message Management
+        - Model Discovery
+        - Model Management
+        - Run Execution
+        - Run Steps
+        - Speech To Text
+        - Text Completions
+        - Text To Speech
+        - Thread Management
+      operations:
+        - Attach a file to an assistant
+        - Cancel Fine-Tuning Job
+        - Cancel Run
+        - Create Fine-Tuning Job
+        - Create Image Variation
+        - Create New Thread
+        - Create Thread And Run
+        - Create Thread Message
+        - Create Thread Run
+        - Create a chat completion
+        - Create a text completion
+        - Create an assistant
+        - Create embeddings
+        - Delete A File
+        - Delete Fine-Tuned Model
+        - Delete Thread
+        - Delete an assistant
+        - Delete an assistant file
+        - Download File Content
+        - Edit Existing Image
+        - Generate Image From Prompt
+        - Generate speech from text
+        - List All Files
+        - List Available Models
+        - List Fine-Tuning Job Events
+        - List Fine-Tuning Jobs
+        - List Run Steps
+        - List Thread Messages
+        - List Thread Runs
+        - List all assistants
+        - List assistant files
+        - Modify Message
+        - Modify Run
+        - Modify Thread
+        - Modify an assistant
+        - Retrieve File Metadata
+        - Retrieve Fine-Tuning Job
+        - Retrieve Message
+        - Retrieve Model Details
+        - Retrieve Run
+        - Retrieve Run Step
+        - Retrieve Thread
+        - Retrieve an assistant
+        - Retrieve an assistant file
+        - Submit Tool Outputs
+        - Transcribe audio to text
+        - Translate audio to English text
+        - Upload A File
+
+  - type: GitHubHttpUrl
+    url: https://github.com/naftiko/openai-sandbox
+
+  - type: GitHubSshUrl
+    url: git@github.com:naftiko/openai-sandbox.git
+
+  - type: GitHubIssues
+    url: https://github.com/naftiko/openai-sandbox/issues
+
+  - type: GitHubDiscussions
+    url: https://github.com/orgs/naftiko/discussions
+  
+  - type: Standards
+    data: 
+
+      - name: APIs.json
+        description: This uses the APIs.json
+        docUrl: http://apisjson.org/
+
+      - name: OpenAPI
+        description: This uses OpenAPI to define access to all HTTP APIs.
+        docUrl: https://spec.openapis.org/oas/latest.html
+
+      - name: JSON Schema
+        description: This uses JSON Schema to define and validate all entities used.
+        docUrl: https://json-schema.org/specification
+
+      - name: Model Context Protocol
+        description: This uses MCP expresed as JSON schema to define each MCP server.
+        docUrl: https://modelcontextprotocol.io/
+
+      - name: Bruno Collections
+        description: This uses Bruno Collections to define each executable HTTP API integration.
+        docUrl: https://docs.usebruno.com/
+
+      - name: Bruno Environments
+        description: This uses Bruno Environments to store keys for each API to use in automation.
+        docUrl: https://docs.usebruno.com/secrets-management/overview
+
+      - name: API Commons
+        description: This uses an API Commons schema to define the plans and rate limits.
+        docUrl: https://apicommons.org/
+
+  - type: Services
+    data: 
+
+      - aid: openai
+        name: Open AI API & MCP Sandbox
+        description: >-
+          This is a Open AI sandbox that uses OpenAPI, Microcks, Bruno, and
+          Backstage to provide a 3rd-party REST API and MCP sandbox for Open AI.
+        docUrl: https://naftiko.github.io/technology/docs/services/openai/
+        apisJson: >-
+          https://raw.githubusercontent.com/api-evangelist/openai/refs/heads/main/apis.yml
+        termsOfServiceUrl: https://openai.com/policies/terms-of-use/
+        privacyPolicyUrl: https://openai.com/policies/privacy-policy/
+
+
+maintainers:
+
+  - FN: Kin Lane
+    email: kinlane@naftiko.io
