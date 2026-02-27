@@ -14,7 +14,7 @@ tags:
   - AI
   - Models
 
-image: https://naftiko.s3.us-east-1.amazonaws.com/naftiko-logo-blue-icon.png
+image: https://naftiko.github.io/docs/images/monogram/monogram_full_color_512.png
 
 created: '2026-01-29'
 modified: '2026-02-13'
@@ -31,6 +31,9 @@ apis:
         tools, and knowledge to respond to user queries. The Assistants API
         currently supports three types of tools: Code Interpreter, Retrieval,
         and Function calling.
+      humanURL: https://github.com/naftiko/openai-sandbox
+      baseURL: http://localhost:8080/rest/openai-sandbox/1.0.0
+      image: https://naftiko.github.io/docs/images/monogram/monogram_full_color_512.png
       tags:
         - Assistants
         - AI Assistants
@@ -55,6 +58,9 @@ apis:
         (transcription and translation) and text to audio (speech synthesis).
         Use the Whisper model for transcription and translation, and the TTS
         models for generating natural-sounding speech from text.
+      humanURL: https://github.com/naftiko/openai-sandbox
+      baseURL: http://localhost:8080/rest/openai-sandbox/1.0.0
+      image: https://naftiko.github.io/docs/images/monogram/monogram_full_color_512.png
       tags:
         - Audio
         - Speech To Text
@@ -79,6 +85,9 @@ apis:
         a list of messages comprising a conversation and returning a
         model-generated response. Supports various features including streaming,
         function calling, vision (image input), and JSON mode.
+      humanURL: https://github.com/naftiko/openai-sandbox
+      baseURL: http://localhost:8080/rest/openai-sandbox/1.0.0
+      image: https://naftiko.github.io/docs/images/monogram/monogram_full_color_512.png
       tags:
         - Chat
         - Completions
@@ -104,6 +113,9 @@ apis:
         along with the probabilities of alternative tokens at each position.
         Note: Most developers should use the Chat Completions API for newer
         models and better results.
+      humanURL: https://github.com/naftiko/openai-sandbox
+      baseURL: http://localhost:8080/rest/openai-sandbox/1.0.0
+      image: https://naftiko.github.io/docs/images/monogram/monogram_full_color_512.png
       tags:
         - Completions
         - Text Completions
@@ -126,6 +138,9 @@ apis:
         that can be easily consumed by machine learning models and algorithms.
         Embeddings are useful for semantic search, clustering, recommendations,
         anomaly detection, and classification tasks.
+      humanURL: https://github.com/naftiko/openai-sandbox
+      baseURL: http://localhost:8080/rest/openai-sandbox/1.0.0
+      image: https://naftiko.github.io/docs/images/monogram/monogram_full_color_512.png
       tags:
         - Embeddings
         - Vectors
@@ -151,6 +166,9 @@ apis:
         OpenAI's models. The API supports various file formats and purposes
         including training data for fine-tuning and documents for the Assistants
         API.
+      humanURL: https://github.com/naftiko/openai-sandbox
+      baseURL: http://localhost:8080/rest/openai-sandbox/1.0.0
+      image: https://naftiko.github.io/docs/images/monogram/monogram_full_color_512.png
       tags:
         - Files
         - File Management
@@ -174,6 +192,9 @@ apis:
         models tailored to your use case by providing training examples. You can
         create fine-tuning jobs, monitor their progress, list events, and manage
         completed fine-tuned models.
+      humanURL: https://github.com/naftiko/openai-sandbox
+      baseURL: http://localhost:8080/rest/openai-sandbox/1.0.0
+      image: https://naftiko.github.io/docs/images/monogram/monogram_full_color_512.png
       tags:
         - Fine-Tuning
         - Training
@@ -197,6 +218,9 @@ apis:
         original images from text descriptions (prompts), edit existing images
         by providing a mask and instructions, or generate variations of existing
         images.
+      humanURL: https://github.com/naftiko/openai-sandbox
+      baseURL: http://localhost:8080/rest/openai-sandbox/1.0.0
+      image: https://naftiko.github.io/docs/images/monogram/monogram_full_color_512.png
       tags:
         - Images
         - Image Generation
@@ -220,6 +244,9 @@ apis:
         models, list all available models, and delete fine-tuned models that you
         have created. Each model has different capabilities, performance
         characteristics, and pricing.
+      humanURL: https://github.com/naftiko/openai-sandbox
+      baseURL: http://localhost:8080/rest/openai-sandbox/1.0.0
+      image: https://naftiko.github.io/docs/images/monogram/monogram_full_color_512.png
       tags:
         - Models
         - Model Discovery
@@ -243,6 +270,9 @@ apis:
         processed by assistants. You can create threads, add messages to them,
         run assistants against them, and retrieve the results. This API is part
         of the Assistants beta feature.
+      humanURL: https://github.com/naftiko/openai-sandbox
+      baseURL: http://localhost:8080/rest/openai-sandbox/1.0.0
+      image: https://naftiko.github.io/docs/images/monogram/monogram_full_color_512.png
       tags:
         - Threads
         - Thread Management
@@ -263,6 +293,7 @@ apis:
 common:
 
   - type: Summary
+    url: https://github.com/naftiko/openai-sandbox
     data:
       numberOfPaths: 33
       numberOfOperations: 48
@@ -358,6 +389,7 @@ common:
     url: https://github.com/orgs/naftiko/discussions
   
   - type: Standards
+    url: https://github.com/naftiko/openai-sandbox
     data: 
 
       - name: APIs.json
@@ -389,6 +421,7 @@ common:
         docUrl: https://apicommons.org/
 
   - type: Services
+    url: https://github.com/naftiko/openai-sandbox
     data: 
 
       - aid: openai
